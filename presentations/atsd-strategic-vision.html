@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ATSD Strategic Vision</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -10,19 +10,27 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
   <style>
+    :root {
+      /* Space reserved for the fixed controls so they never overlap slide 1 */
+      --controls-height: 88px;
+    }
+
     * { box-sizing: border-box; }
 
     body {
       background-color: #F8FAFC;
       display: grid;
-      gap: 20px;
       grid-template-columns: 1fr;
+      place-items: center;
+      gap: 20px;
       margin: 0;
       min-height: 100vh;
       padding: 20px 0;
-      place-items: center;
       font-family: 'Roboto', sans-serif;
     }
+
+    /* Reserve vertical space at the top so buttons don't overlap slide 1 */
+    #deck { margin-top: var(--controls-height); }
 
     .slide-container {
       align-items: flex-start;
@@ -31,13 +39,16 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
-      height: 720px;
+      height: 720px;          /* screen height */
       justify-content: flex-start;
       overflow: hidden;
       padding: 40px 60px;
       position: relative;
       width: 1280px;
       color: #262626;
+      /* prevent in-page breaks for html2pdf too */
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
 
     .slide-container::after {
@@ -94,49 +105,71 @@
     #slide2 .content-area { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
     #slide2 .icon-box.full-span { grid-column: 1 / -1; }
 
-    /* ===== PRINT: fix first-page break + guarantee one slide per page ===== */
+    /* ---------- Controls (stack vertically) ---------- */
+    .print-controls {
+      position: fixed;
+      top: 16px; right: 16px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;       /* vertical stack */
+      align-items: flex-end;
+      gap: 8px;
+    }
+    .print-controls button {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #354CA1;
+      background: #354CA1;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    }
+    .print-controls button:hover { filter: brightness(0.95); }
+
+    /* ---------- PRINT / PDF: fix first-page weirdness ---------- */
     @media print {
       @page { size: Letter landscape; margin: 0.5in; }
 
-      /* Critical fixes: remove screen grid, prevent mid-slide breaks */
+      /* Turn off the screen grid so nothing gets centered/clipped */
       html, body {
-        -webkit-print-color-adjust: exact; print-color-adjust: exact;
-        background: #fff !important; font-size: 107%;
-        display: block !important; /* override body grid */
+        display: block !important;
+        background: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        font-size: 107%;
+        padding: 0 !important;
+        margin: 0 !important;
       }
-      body { padding: 0 !important; }
+
+      /* Remove the reserved space at the top in print */
+      #deck { margin-top: 0 !important; }
 
       .slide-container {
         display: block !important;
-        page-break-after: always; break-after: page;
-        page-break-inside: avoid; break-inside: avoid;
+        width: 100% !important;
+        height: auto !important;     /* let content define height in print */
+        padding: 0.25in !important;
         border: 1px solid #E5E7EB !important;
         box-shadow: none !important;
-        padding: 0.25in !important;
-        width: 100% !important;
-        height: auto !important;   /* let content define height */
-      }
-      .content-area { height: auto !important; } /* free layout in print */
-      .print-controls { display: none !important; }
-    }
 
-    /* Screen-only controls: now stacked vertically */
-    @media screen {
-      .print-controls {
-        position: fixed; top: 12px; right: 12px; z-index: 9999;
-        display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+        /* guarantee one slide per page */
+        page-break-inside: avoid;
+        break-inside: avoid;
+        page-break-after: always;
+        break-after: page;
       }
-      .print-controls button {
-        padding: 8px 12px; border-radius: 10px;
-        border: 1px solid #354CA1; background: #354CA1; color: #fff; cursor: pointer;
-      }
-      .print-controls button:hover { filter: brightness(0.95); }
+
+      /* Force a clean page break before every slide after the first */
+      .slide-container + .slide-container { page-break-before: always; break-before: page; }
+
+      /* hide buttons */
+      .print-controls { display: none !important; }
     }
   </style>
 </head>
 <body>
 
-<!-- Controls -->
+<!-- Controls (vertical stack, off the content) -->
 <div class="print-controls">
   <button onclick="window.print()">Print Slides</button>
   <button id="downloadPdfBtn" type="button">Download PDF</button>
@@ -227,25 +260,31 @@
       </div>
     </div>
   </div>
-</div> <!-- /#deck -->
+</div>
 
-<!-- html2pdf.js (from CDN) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-YcsIPyt8xOQqvNQbQYw1wQqF7oaoHf9C8E6Lx4u9+o5wW8oF5H1p+e1r0V9ZkqP3gAu9gS9E5QG3mV0hRZb3Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- html2pdf.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-YcsIPyt8xOQqvNQbQYw1wQqF7oaoHf9C8E6Lx4u9+o5wW8oF5H1p+e1r0V9ZkqP3gAu9gS9E5QG3mV0hRZb3Vg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  // Generate a proper PDF (Letter landscape) without opening the print dialog
   function downloadPDF() {
     const element = document.getElementById('deck');
     const opt = {
-      margin:       0.5,                 // inches
+      margin:       0.5,                               // inches
       filename:     'ATSD Strategic Vision.pdf',
       image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true },
+      html2canvas:  { scale: 2, useCORS: true, dpi: 192, letterRendering: true },
       jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' },
-      pagebreak:    { mode: ['css', 'legacy'] }  // respect our CSS page breaks
+      pagebreak:    { mode: ['css', 'legacy'] }        // respect CSS page-breaks
     };
-    html2pdf().set(opt).from(element).save();
+    // Ensure controls are hidden during capture
+    const controls = document.querySelector('.print-controls');
+    const prevDisplay = controls.style.display;
+    controls.style.display = 'none';
+    html2pdf().set(opt).from(element).save().then(() => {
+      controls.style.display = prevDisplay || '';
+    });
   }
-
   document.getElementById('downloadPdfBtn').addEventListener('click', downloadPDF);
 </script>
 

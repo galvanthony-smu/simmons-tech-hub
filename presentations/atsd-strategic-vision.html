@@ -10,10 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
   <style>
-    :root {
-      /* Space reserved for the fixed controls so they never overlap slide 1 */
-      --controls-height: 88px;
-    }
+    :root { --controls-height: 88px; }
 
     * { box-sizing: border-box; }
 
@@ -29,7 +26,7 @@
       font-family: 'Roboto', sans-serif;
     }
 
-    /* Reserve vertical space at the top so buttons don't overlap slide 1 */
+    /* keep buttons from overlapping slide 1 on screen */
     #deck { margin-top: var(--controls-height); }
 
     .slide-container {
@@ -39,22 +36,20 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
-      height: 720px;          /* screen height */
+      height: 720px;
       justify-content: flex-start;
       overflow: hidden;
       padding: 40px 60px;
       position: relative;
       width: 1280px;
       color: #262626;
-      /* prevent in-page breaks for html2pdf too */
       break-inside: avoid;
       page-break-inside: avoid;
     }
 
     .slide-container::after {
       content: "A. Galvan | ATSD Strategic Vision | " attr(data-slide-number);
-      position: absolute;
-      bottom: 30px; left: 60px;
+      position: absolute; bottom: 30px; left: 60px;
       font-size: 14px; color: #6b7280;
     }
 
@@ -93,83 +88,75 @@
     .diagram-box.current h3 { color: #CC0035; }
     .diagram-box.future h3 { color: #59C3C3; }
     .diagram-box.current ul li::before { content: '\f00d'; color: #CC0035; }
-    .diagram-box.future ul li::before { content: '\f00c'; color: #59C3C3; }
+    .diagram-box.future ul li::before  { content: '\f00c'; color: #59C3C3; }
     .diagram-box p { font-size: 18px; text-align: center; font-style: italic; color: #475569; }
 
-    .emph {
-      font-weight: 700; color: #CC0035;
-      text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 2px;
-    }
+    .emph { font-weight: 700; color: #CC0035; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 2px; }
 
     /* Slide 2 helpers (balanced 3 items) */
     #slide2 .content-area { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
     #slide2 .icon-box.full-span { grid-column: 1 / -1; }
 
-    /* ---------- Controls (stack vertically) ---------- */
+    /* ---------- Controls (vertical stack) ---------- */
     .print-controls {
-      position: fixed;
-      top: 16px; right: 16px;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;       /* vertical stack */
+      position: fixed; top: 16px; right: 16px;
+      z-index: 9999; display: flex; flex-direction: column; gap: 8px;
       align-items: flex-end;
-      gap: 8px;
     }
     .print-controls button {
-      padding: 8px 12px;
-      border-radius: 10px;
-      border: 1px solid #354CA1;
-      background: #354CA1;
-      color: #fff;
-      cursor: pointer;
+      padding: 8px 12px; border-radius: 10px;
+      border: 1px solid #354CA1; background: #354CA1; color: #fff; cursor: pointer;
       box-shadow: 0 2px 8px rgba(0,0,0,.15);
     }
     .print-controls button:hover { filter: brightness(0.95); }
 
-    /* ---------- PRINT / PDF: fix first-page weirdness ---------- */
+    /* ---------- PRINT: exact sizing to prevent bleed/extra blank ---------- */
     @media print {
       @page { size: Letter landscape; margin: 0.5in; }
 
-      /* Turn off the screen grid so nothing gets centered/clipped */
       html, body {
         display: block !important;
         background: #fff !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        font-size: 107%;
-        padding: 0 !important;
-        margin: 0 !important;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        font-size: 105%;           /* tiny downsize helps fit */
+        padding: 0 !important; margin: 0 !important;
       }
 
-      /* Remove the reserved space at the top in print */
+      /* remove screen offset */
       #deck { margin-top: 0 !important; }
 
+      /* Hard-size each slide to fit EXACTLY within the printable box */
       .slide-container {
-        display: block !important;
-        width: 100% !important;
-        height: auto !important;     /* let content define height in print */
-        padding: 0.25in !important;
+        width: 10in !important;            /* 11 - 2×0.5 margins = 10in */
+        height: 7.5in !important;          /* 8.5 - 2×0.5 = 7.5in */
+        margin: 0 auto !important;
+        padding: 0.3in !important;         /* included in the 10×7.5 via border-box */
         border: 1px solid #E5E7EB !important;
         box-shadow: none !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
 
-        /* guarantee one slide per page */
-        page-break-inside: avoid;
-        break-inside: avoid;
-        page-break-after: always;
-        break-after: page;
+        page-break-inside: avoid; break-inside: avoid;
+        page-break-after: always; break-after: page;
       }
 
-      /* Force a clean page break before every slide after the first */
-      .slide-container + .slide-container { page-break-before: always; break-before: page; }
+      /* Reduce spacing just for print to avoid spillover */
+      .content-area      { gap: 28px !important; height: auto !important; }
+      #slide2 .content-area { gap: 28px !important; }
+      .icon-box          { margin-bottom: 14px !important; padding: 18px !important; }
+      .slide-container h1{ font-size: 44px !important; margin-bottom: 18px !important; padding-bottom: 10px !important; }
+      .slide-container p, .slide-container li { font-size: 18px !important; }
 
-      /* hide buttons */
+      /* Avoid an extra trailing blank page */
+      .slide-container:last-child { page-break-after: auto !important; break-after: auto !important; }
+
       .print-controls { display: none !important; }
     }
   </style>
 </head>
 <body>
 
-<!-- Controls (vertical stack, off the content) -->
+<!-- Controls -->
 <div class="print-controls">
   <button onclick="window.print()">Print Slides</button>
   <button id="downloadPdfBtn" type="button">Download PDF</button>
@@ -275,14 +262,15 @@
       image:        { type: 'jpeg', quality: 0.98 },
       html2canvas:  { scale: 2, useCORS: true, dpi: 192, letterRendering: true },
       jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' },
-      pagebreak:    { mode: ['css', 'legacy'] }        // respect CSS page-breaks
+      // Respect CSS page breaks; don't split slide internals
+      pagebreak:    { mode: ['css'], avoid: ['.icon-box', '.diagram-box'] }
     };
-    // Ensure controls are hidden during capture
+    // Hide buttons during capture
     const controls = document.querySelector('.print-controls');
-    const prevDisplay = controls.style.display;
+    const prev = controls.style.display;
     controls.style.display = 'none';
     html2pdf().set(opt).from(element).save().then(() => {
-      controls.style.display = prevDisplay || '';
+      controls.style.display = prev || '';
     });
   }
   document.getElementById('downloadPdfBtn').addEventListener('click', downloadPDF);

@@ -1,9 +1,201 @@
-
 <!doctype html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Anthony Galván</title>
-<h1>Anthony Galván</h1>
-<ul>
-  <li><a href="./presentations/atsd-strategic-vision.html">ATSD Strategic Vision (printable)</a></li>
-</ul>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simmons Tech Hub — Anthony Galván</title>
+  <meta name="description" content="Simmons School Tech Hub: practical guides, demos, and resources for faculty and staff.">
+  <meta name="theme-color" content="#c41f2b">
+  <style>
+    /* ======= Brand tokens (tweak to match official palette later) ======= */
+    :root{
+      --brand-red: #c41f2b;      /* primary accent (SMU-ish red) */
+      --brand-blue: #123a5a;     /* deep blue accent */
+      --brand-ink: #1f2937;      /* body text */
+      --brand-muted: #6b7280;    /* secondary text */
+      --bg: #ffffff;
+      --bg-alt: #f7f7f8;
+      --card: #ffffff;
+      --ring: rgba(196,31,43,.25);
+      --shadow: 0 10px 25px rgba(0,0,0,.06);
+      --radius: 16px;
+      --maxw: 1100px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root{
+        --bg:#0b0c10; --bg-alt:#0f1116; --card:#10131a;
+        --brand-ink:#e5e7eb; --brand-muted:#9aa4b2;
+        --shadow: 0 10px 25px rgba(0,0,0,.35);
+        --ring: rgba(196,31,43,.45);
+      }
+    }
+
+    /* ======= Base ======= */
+    *{box-sizing:border-box}
+    body{
+      margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--brand-ink); background:var(--bg);
+    }
+    a{color:var(--brand-red); text-decoration:none}
+    a:hover{ text-decoration:underline }
+    .wrap{max-width:var(--maxw); margin-inline:auto; padding:0 24px}
+
+    /* ======= Header / Nav ======= */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(6px);
+      background:linear-gradient(0deg, rgba(255,255,255,.6), rgba(255,255,255,.6));
+      border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    @media (prefers-color-scheme: dark){
+      header{ background:linear-gradient(0deg, rgba(16,19,26,.7), rgba(16,19,26,.7)); border-color:rgba(255,255,255,.06)}
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; padding:14px 0;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center; font-weight:700; letter-spacing:.2px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:8px; display:grid; place-items:center;
+      background:linear-gradient(135deg,var(--brand-red),var(--brand-blue));
+      color:#fff; font-weight:800;
+      box-shadow:0 6px 14px rgba(196,31,43,.25);
+    }
+    nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0}
+    nav a{color:var(--brand-ink); font-weight:600}
+    nav a.cta{
+      background:var(--brand-red); color:#fff; padding:8px 14px; border-radius:999px;
+      box-shadow:0 6px 16px var(--ring);
+    }
+    nav a.cta:hover{filter:brightness(.95); text-decoration:none}
+
+    /* ======= Hero ======= */
+    .hero{
+      background: linear-gradient(180deg, var(--bg), var(--bg-alt));
+      padding:64px 0 36px;
+    }
+    .hero h1{font-size:clamp(28px, 4vw, 44px); line-height:1.15; margin:0 0 10px}
+    .hero p{max-width:800px; color:var(--brand-muted); margin:0 0 18px}
+    .buttons{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:12px;
+      background:#fff; color:var(--brand-ink); border:1px solid rgba(0,0,0,.08); box-shadow:var(--shadow);
+    }
+    @media (prefers-color-scheme: dark){ .btn{background:var(--card); border-color:rgba(255,255,255,.08)} }
+    .btn.primary{ background:var(--brand-red); color:#fff; border-color:transparent }
+    .btn svg{width:18px; height:18px}
+
+    /* ======= Cards ======= */
+    .grid{ display:grid; gap:18px; grid-template-columns:repeat(12, 1fr); }
+    .card{
+      grid-column:span 12; padding:18px; background:var(--card); border-radius:var(--radius);
+      box-shadow:var(--shadow); border:1px solid rgba(0,0,0,.06);
+    }
+    .card h3{margin:6px 0 6px; font-size:20px}
+    .card p{margin:0; color:var(--brand-muted)}
+    @media (min-width:720px){ .card{ grid-column:span 6 } }
+    @media (min-width:1024px){ .card{ grid-column:span 4 } }
+
+    /* ======= Section headings ======= */
+    .section{ padding:26px 0 8px }
+    .section h2{font-size:22px; margin:0 0 10px}
+    .list{ margin:8px 0 0; padding-left:18px }
+    .muted{ color:var(--brand-muted) }
+
+    /* ======= Footer ======= */
+    footer{ margin-top:36px; padding:24px 0 40px; color:var(--brand-muted); border-top:1px dashed rgba(0,0,0,.12) }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">ST</div>
+      <div>
+        <div>Simmons Tech Hub</div>
+        <small class="muted">SMU · Academic Technology</small>
+      </div>
+    </div>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="./presentations/">Presentations</a></li>
+        <li><a href="https://github.com/galvanthony-smu" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a class="cta" href="mailto:amgalvan@mail.smu.edu">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Practical tech for teaching, research, and operations.</h1>
+    <p>
+      A living collection of playbooks, demos, and templates that help the Simmons School use technology as a strategic lever.
+      Built for speed; grounded in reality; open by default.
+    </p>
+    <div class="buttons">
+      <a class="btn primary" href="./presentations/atsd-strategic-vision.html" title="View the printable slide deck">
+        <!-- arrow icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Strategic Vision Deck
+      </a>
+      <a class="btn" href="./presentations/">All Presentations</a>
+      <a class="btn" href="https://github.com/galvanthony-smu?tab=repositories" target="_blank" rel="noopener">
+        <!-- github-ish icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58V20.9c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.35-1.77-1.35-1.77-1.1-.75.08-.74.08-.74 1.22.09 1.87 1.25 1.87 1.25 1.08 1.84 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.25-3.22-.13-.31-.54-1.56.12-3.26 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.7.25 2.95.12 3.26.78.84 1.25 1.91 1.25 3.22 0 4.61-2.8 5.63-5.47 5.93.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+        Repos
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap section">
+  <h2>What’s inside</h2>
+  <div class="grid">
+    <article class="card">
+      <h3>Playbooks</h3>
+      <p>Concise, step-by-step how-tos for common Simmons workflows—no fluff, just outcomes.</p>
+    </article>
+    <article class="card">
+      <h3>Demos & Prototypes</h3>
+      <p>Small, testable examples using Quarto, R, Python, and front-end tools to de-risk ideas fast.</p>
+    </article>
+    <article class="card">
+      <h3>Presentations</h3>
+      <p>Slides and recordings for strategy updates, workshops, and show-and-tell sessions.</p>
+    </article>
+    <article class="card">
+      <h3>Templates</h3>
+      <p>Starter repos and docs you can copy: syllabus scaffolds, data notebooks, CI pipelines.</p>
+    </article>
+    <article class="card">
+      <h3>Roadmap</h3>
+      <p>What’s shipping next; what’s in discovery; what we parked. Visible by default.</p>
+    </article>
+    <article class="card">
+      <h3>Requests</h3>
+      <p>Need something? Open an issue or send a note—collaboration beats clairvoyance.</p>
+    </article>
+  </div>
+</div>
+
+<div class="wrap section">
+  <h2>Quick links</h2>
+  <ul class="list">
+    <li><a href="./presentations/atsd-strategic-vision.html">ATSD Strategic Vision (printable)</a></li>
+    <li><a href="./presentations/">All presentations</a></li>
+    <li><a href="mailto:amgalvan@mail.smu.edu">Contact Anthony</a></li>
+  </ul>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="y"></span> Simmons Tech Hub · Southern Methodist University</div>
+    <div class="muted">This site is static—no tracking, no cookies. Brand colors are placeholders; swap tokens when you pull official hex.</div>
+  </div>
+</footer>
+
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

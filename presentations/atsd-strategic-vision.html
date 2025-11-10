@@ -363,5 +363,83 @@
   document.getElementById('downloadPdfBtn').addEventListener('click', downloadPDF);
 </script>
 
+  <script>
+  // Robust grab for jsPDF and html2canvas, regardless of how the bundle attached them.
+  function getEngines() {
+    const jsPDF =
+      (window.jspdf && window.jspdf.jsPDF) ||   // usual in html2pdf.bundle
+      window.jsPDF ||                            // some builds attach directly
+      null;
+
+    const html2canvas =
+      window.html2canvas ||                      // usual in html2pdf.bundle
+      (window.html2pdf && window.html2pdf.html2canvas) || // rare shim
+      null;
+
+    return { jsPDF, html2canvas };
+  }
+
+  async function ensureEngines() {
+    let { jsPDF, html2canvas } = getEngines();
+    if (jsPDF && html2canvas) return { jsPDF, html2canvas };
+
+    // Fallback: load individual libs if bundle didn't attach (network-permitting)
+    const load = (src) => new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = src; s.onload = res; s.onerror = () => rej(new Error('Failed: ' + src));
+      document.head.appendChild(s);
+    });
+
+    if (!html2canvas) await load('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    if (!jsPDF)       await load('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+
+    // re-check after loading
+    jsPDF = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF || (window.jspdf && window.jspdf.jsPDF);
+    html2canvas = window.html2canvas;
+
+    if (!jsPDF || !html2canvas) {
+      alert('PDF engine failed to load. Try a hard refresh (Shift+Reload).');
+      throw new Error('PDF engines unavailable');
+    }
+    return { jsPDF, html2canvas };
+  }
+
+  async function downloadPDF() {
+    const { jsPDF, html2canvas } = await ensureEngines();
+
+    // In jspdf.umd builds, jsPDF is a namespace with { jsPDF } ctor.
+    const PDFCtor = (jsPDF && jsPDF.name === 'jsPDF') ? jsPDF : (jsPDF.jsPDF || jsPDF);
+    const pdf = new PDFCtor({ unit: 'in', format: 'letter', orientation: 'landscape' });
+
+    const controls = document.querySelector('.print-controls');
+    const prevDisplay = controls.style.display;
+    controls.style.display = 'none';
+
+    const slides = Array.from(document.querySelectorAll('.slide-container'));
+
+    for (let i = 0; i < slides.length; i++) {
+      const slide = slides[i];
+
+      // High-res snapshot of each slide
+      const canvas = await html2canvas(slide, {
+        scale: 2,
+        backgroundColor: '#ffffff',
+        useCORS: true,
+        windowWidth: slide.scrollWidth
+      });
+
+      const img = canvas.toDataURL('image/jpeg', 0.98);
+      if (i > 0) pdf.addPage('letter', 'landscape');
+      // 0.5" margins -> image 10 x 7.5 inches
+      pdf.addImage(img, 'JPEG', 0.5, 0.5, 10, 7.5);
+    }
+
+    pdf.save('ATSD Strategic Vision.pdf');
+    controls.style.display = prevDisplay || '';
+  }
+
+  document.getElementById('downloadPdfBtn').addEventListener('click', downloadPDF);
+</script>
+
 </body>
 </html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ATSD Strategic Vision</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
     :root { --controls-height: 88px; }
@@ -16,189 +16,191 @@
     html, body { margin: 0; padding: 0; }
 
     body {
-      background-color: #F8FAFC; /* canvas */
+      background-color: #F8FAFC;
       display: grid;
-      grid-template-columns: 1fr;
       place-items: center;
       gap: 20px;
-      min-height: 100vh;
       padding: 20px 0;
-      font-family: 'Roboto', Arial, "Helvetica Neue", Helvetica, sans-serif; /* brand-safe fallback */
-      color: #262626; /* SMU neutral black */
+      min-height: 100vh;
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #262626;
       line-height: 1.6;
     }
 
-    /* keep buttons from overlapping slide 1 on screen */
     #deck { margin-top: var(--controls-height); }
 
     .slide-container {
       align-items: flex-start;
       background-color: #fff;
       border-radius: 8px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       display: flex;
       flex-direction: column;
-      height: 720px;               /* on-screen size */
+      height: auto;
       justify-content: flex-start;
-      overflow: hidden;
       padding: 40px 60px;
       position: relative;
-      width: 1280px;
-      color: #262626;
-      break-inside: avoid;
-      page-break-inside: avoid;
+      width: min(1280px, 96vw);
+      overflow: hidden;
     }
 
     .slide-container::after {
       content: "A. Galvan | ATSD Strategic Vision | " attr(data-slide-number);
-      position: absolute; bottom: 30px; left: 60px;
-      font-size: 14px; color: #6b7280;
+      position: absolute;
+      bottom: 30px;
+      left: 60px;
+      font-size: 14px;
+      color: #6b7280;
     }
 
-    /* Typography (SMU brand colors) */
-    .slide-container h1,
-    .slide-container h2,
-    .slide-container h3 {
-      font-family: 'Roboto Condensed', Georgia, "Times New Roman", serif; /* Tiempos fallback = Georgia */
-      font-weight: 700; margin: 0 0 15px 0; color: #354CA1; /* SMU Blue */
+    h1, h2, h3 {
+      font-family: 'Roboto Condensed', Georgia, serif;
+      font-weight: 700;
+      margin: 0 0 15px 0;
+      color: #354CA1;
     }
-    .slide-container h1 {
-      font-size: 48px; margin-bottom: 30px; width: 100%;
-      border-bottom: 3px solid #CC0035; /* SMU Red */
+
+    h1 {
+      font-size: 48px;
+      border-bottom: 3px solid #CC0035;
       padding-bottom: 15px;
-    }
-    .slide-container p,
-    .slide-container li {
-      font-size: 20px; line-height: 1.6; color: #262626; margin-bottom: 15px;
+      margin-bottom: 30px;
     }
 
-    .slide-container ul { list-style: none; padding-left: 0; }
-    .slide-container li { position: relative; padding-left: 35px; }
-    .slide-container li::before {
-      content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
-      color: #CC0035; position: absolute; left: 0; top: 4px; font-size: 18px;
+    p, li {
+      font-size: 20px;
+      color: #262626;
+      margin-bottom: 15px;
     }
 
-    /* Layout */
-    .content-area { display: flex; width: 100%; height: 100%; gap: 40px; }
+    ul { list-style: none; padding-left: 0; }
+    li { position: relative; padding-left: 35px; }
+    li::before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: #CC0035;
+      position: absolute;
+      left: 0;
+      top: 4px;
+      font-size: 18px;
+    }
+
+    .content-area { display: flex; gap: 40px; width: 100%; }
+
     .column { flex: 1; display: flex; flex-direction: column; }
 
     .icon-box {
-      background-color: #F3F4F6; border-radius: 8px; padding: 22px; margin-bottom: 20px;
-      border-left: 5px solid #354CA1; /* blue accent */
+      background-color: #F3F4F6;
+      border-radius: 8px;
+      padding: 22px;
+      margin-bottom: 20px;
+      border-left: 5px solid #354CA1;
       flex-grow: 1;
     }
+
     .icon-box h3 { display: flex; align-items: center; margin-top: 0; }
     .icon-box i { font-size: 28px; color: #354CA1; margin-right: 15px; width: 40px; text-align: center; }
-    .icon-box li::before { content: '\f101'; color: #CC0035; top: 5px; }
 
-    .diagram-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
-    .diagram-box { background-color: #F8FAFC; border: 2px solid #E5E7EB; border-radius: 8px; padding: 25px; }
-    .diagram-box h3 { text-align: center; margin-top: 0; border-bottom: 2px solid #E5E7EB; padding-bottom: 10px; }
-    .diagram-box.current h3 { color: #CC0035; }   /* red */
-    .diagram-box.future  h3 { color: #59C3C3; }   /* brand teal */
-    .diagram-box.current ul li::before { content: '\f00d'; color: #CC0035; }
-    .diagram-box.future  ul li::before { content: '\f00c'; color: #59C3C3; }
-    .diagram-box p { font-size: 18px; text-align: center; font-style: italic; color: #475569; }
+    .emph { font-weight: 700; color: #CC0035; text-decoration: underline; text-underline-offset: 2px; }
 
-    .emph {
-      font-weight: 700; color: #CC0035; /* SMU Red */
-      text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 2px;
-    }
-
-    /* Slide 2 helpers (3 items balanced) */
+    /* Slide 2 layout */
     #slide2 .content-area { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
     #slide2 .icon-box.full-span { grid-column: 1 / -1; }
 
-    /* Slide 3 balance helpers */
-    #slide3 .diagram-box { display: flex; flex-direction: column; }
-    #slide3 .diagram-box p { margin-bottom: 12px; max-width: 42ch; margin-left: auto; margin-right: auto; }
-    #slide3 .diagram-box ul.tight { margin: 0; padding: 0; list-style: none; }
+    /* Slide 3 balance and text flow */
+    #slide3 .diagram-container {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+    #slide3 .diagram-box {
+      background-color: #F8FAFC;
+      border: 2px solid #E5E7EB;
+      border-radius: 8px;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      overflow-wrap: anywhere;
+    }
+    #slide3 .diagram-box h3 { text-align: center; border-bottom: 2px solid #E5E7EB; padding-bottom: 10px; }
+    #slide3 .diagram-box.current h3 { color: #CC0035; }
+    #slide3 .diagram-box.future h3 { color: #59C3C3; }
+
+    #slide3 .diagram-box ul.tight {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      max-width: 48ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
     #slide3 .diagram-box ul.tight li {
-      position: relative; padding-left: 28px; margin-bottom: 8px; line-height: 1.45;
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 8px;
+      line-height: 1.45;
+      font-size: 18px;
     }
     #slide3 .diagram-box ul.tight li::before {
-      content: '\f101'; /* arrow-right */
-      font-family: 'Font Awesome 6 Free'; font-weight: 900;
-      color: #CC0035; position: absolute; left: 0; top: 2px; font-size: 16px;
+      content: '\f101';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: #CC0035;
+      position: absolute;
+      left: 0;
+      top: 2px;
+      font-size: 16px;
     }
 
-    /* Controls (vertical stack) */
+    /* Controls */
     .print-controls {
-      position: fixed; top: 16px; right: 16px;
-      z-index: 9999; display: flex; flex-direction: column; gap: 8px;
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       align-items: flex-end;
     }
     .print-controls button {
-      padding: 8px 12px; border-radius: 10px;
-      border: 1px solid #354CA1; background: #354CA1; color: #fff; cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #354CA1;
+      background: #354CA1;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
     .print-controls button:hover { filter: brightness(0.95); }
 
-    /* ---------- PRINT: exact sizing to prevent bleed/extra blank ---------- */
+    /* Print adjustments */
     @media print {
       @page { size: Letter landscape; margin: 0.5in; }
-
-      html, body {
-        display: block !important;
-        background: #fff !important;
-        -webkit-print-color-adjust: exact; print-color-adjust: exact;
-        font-size: 105%;           /* tiny downsize helps fit */
-        padding: 0 !important; margin: 0 !important;
-      }
-
-      /* remove screen offset */
-      #deck { margin-top: 0 !important; }
-
-      /* Hard-size each slide to fit within printable area */
+      html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #fff !important; font-size: 105%; }
       .slide-container {
-        width: 10in !important;            /* 11 - 2×0.5 margins = 10in */
-        height: 7.5in !important;          /* 8.5 - 2×0.5 = 7.5in */
-        margin: 0 auto !important;
-        padding: 0.3in !important;         /* included in the 10×7.5 via border-box */
+        width: 10in !important;
+        height: 7.5in !important;
         border: 1px solid #E5E7EB !important;
         box-shadow: none !important;
-        box-sizing: border-box !important;
-        overflow: hidden !important;
-
-        page-break-inside: avoid; break-inside: avoid;
-        page-break-after: always; break-after: page;
+        padding: 0.3in !important;
+        page-break-after: always;
+        break-after: page;
+        overflow: hidden;
       }
-
-      /* Slight spacing reductions to avoid spillover */
-      .content-area      { gap: 28px !important; height: auto !important; }
-      #slide2 .content-area { gap: 28px !important; }
-      .icon-box          { margin-bottom: 14px !important; padding: 18px !important; }
-      .slide-container h1{ font-size: 44px !important; margin-bottom: 18px !important; padding-bottom: 10px !important; }
-      .slide-container p, .slide-container li { font-size: 18px !important; }
-
-      /* Avoid extra trailing blank */
-      .slide-container:last-child { page-break-after: auto !important; break-after: auto !important; }
-
       .print-controls { display: none !important; }
-    }
-
-    /* Responsive: ensure readability on narrow screens */
-    @media (max-width: 1300px) {
-      .slide-container { width: 96vw; height: auto; }
-      .content-area { height: auto; }
-    }
-    @media (max-width: 900px) {
-      #slide2 .content-area { grid-template-columns: 1fr; }
-      .diagram-container { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- Controls -->
 <div class="print-controls">
   <button onclick="window.print()">Print Slides</button>
   <button id="downloadPdfBtn" type="button">Download PDF</button>
 </div>
 
-<!-- Deck wrapper (target for html2pdf) -->
 <div id="deck">
   <!-- SLIDE 1 -->
   <div class="slide-container" id="slide1" data-slide-number="1">
@@ -229,7 +231,7 @@
     </div>
   </div>
 
-  <!-- SLIDE 2 (3 items, balanced) -->
+  <!-- SLIDE 2 -->
   <div class="slide-container" id="slide2" data-slide-number="2">
     <h1>"All ATSD" Project Suggestions (Institutional)</h1>
     <div class="content-area">
@@ -257,74 +259,61 @@
     </div>
   </div>
 
-<!-- SLIDE 3 (final balanced version with 3 bullets) -->
-<div class="slide-container" id="slide3" data-slide-number="3">
-  <h1>A New ATSD Model: The "Champion/Specialist"</h1>
-  <div class="content-area">
-    <div class="diagram-container">
-      <!-- LEFT: Current model + why it struggles -->
-      <div class="diagram-box current">
-        <h3>CURRENT: Siloed Model</h3>
-        <ul>
-          <li>ATSD A = School A + (Canvas, Zoom, Projects)</li>
-          <li>ATSD B = School B + (Canvas, Zoom, Projects)</li>
-          <li>ATSD C = School C + (Canvas, Zoom, Projects)</li>
-        </ul>
-        <p style="text-align:left; font-style:normal; color:#262626;">
-          Why it struggles:
-        </p>
-        <ul class="tight">
-          <li>Duplicated effort across common platforms.</li>
-          <li>Slow diffusion of great ideas; limited skill-sharing.</li>
-          <li>Inconsistent faculty experience across schools.</li>
-        </ul>
-      </div>
+  <!-- SLIDE 3 -->
+  <div class="slide-container" id="slide3" data-slide-number="3">
+    <h1>A New ATSD Model: The "Champion/Specialist"</h1>
+    <div class="content-area">
+      <div class="diagram-container">
+        <div class="diagram-box current">
+          <h3>CURRENT: Siloed Model</h3>
+          <ul class="tight">
+            <li>ATSD A = School A + (Canvas, Zoom, Projects)</li>
+            <li>ATSD B = School B + (Canvas, Zoom, Projects)</li>
+            <li>ATSD C = School C + (Canvas, Zoom, Projects)</li>
+          </ul>
+          <p style="text-align:left; font-style:normal; color:#262626;">Why it struggles:</p>
+          <ul class="tight">
+            <li>Duplicated effort across common platforms.</li>
+            <li>Slow diffusion of great ideas; limited skill-sharing.</li>
+            <li>Inconsistent faculty experience across schools.</li>
+          </ul>
+        </div>
 
-      <!-- RIGHT: Future model with concise, positive framing -->
-      <div class="diagram-box future">
-        <h3>FUTURE: Champion/Specialist</h3>
-        <ul>
-          <li><span class="emph">Champions:</span> A, B, C (the “Front Door” for their schools)</li>
-          <li><span class="emph">Specialist Hub:</span> (Canvas, Zoom, Panopto, Qualtrics)</li>
-          <li><span class="emph">Champion Projects:</span> (AI Roadshow, Simulation Engine, Data Lake)</li>
-        </ul>
+        <div class="diagram-box future">
+          <h3>FUTURE: Champion/Specialist</h3>
+          <ul class="tight">
+            <li><span class="emph">Champions:</span> A, B, C (the “Front Door” for their schools)</li>
+            <li><span class="emph">Specialist Hub:</span> (Canvas, Zoom, Panopto, Qualtrics)</li>
+            <li><span class="emph">Champion Projects:</span> (AI Roadshow, Simulation Engine, Data Lake)</li>
+          </ul>
 
-        <p>
-          Why it works:
-        </p>
-        <ul class="tight">
-          <li>The only model that sustains innovation by combining local insight with shared capability.</li>
-          <li>Preserves what Deans value most — a trusted “Front Door.”</li>
-          <li>Creates a “Specialist Hub” to scale great ideas across schools.</li>
-        </ul>
+          <ul class="tight" style="margin-top:12px;">
+            <li>The only model that sustains innovation by combining local insight with shared capability.</li>
+            <li>Preserves what Deans value most: a trusted “Front Door.”</li>
+            <li>Creates a “Specialist Hub” to scale great ideas across schools.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
 <!-- html2pdf.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
-        integrity="sha512-YcsIPyt8xOQqvNQbQYw1wQqF7oaoHf9C8E6Lx4u9+o5wW8oF5H1p+e1r0V9ZkqP3gAu9gS9E5QG3mV0hRZb3Vg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
-  function downloadPDF() {
+  document.getElementById('downloadPdfBtn').addEventListener('click', () => {
     const element = document.getElementById('deck');
     const opt = {
-      margin:       0.5,                               // inches
-      filename:     'ATSD Strategic Vision.pdf',
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true, dpi: 192, letterRendering: true },
-      jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' },
-      pagebreak:    { mode: ['css'], avoid: ['.icon-box', '.diagram-box'] }
+      margin: 0.5,
+      filename: 'ATSD Strategic Vision.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true, dpi: 192 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
     };
-    // Hide controls during capture
     const controls = document.querySelector('.print-controls');
-    const prev = controls.style.display;
     controls.style.display = 'none';
-    html2pdf().set(opt).from(element).save().then(() => {
-      controls.style.display = prev || '';
-    });
-  }
-  document.getElementById('downloadPdfBtn').addEventListener('click', downloadPDF);
+    html2pdf().set(opt).from(element).save().then(() => (controls.style.display = 'flex'));
+  });
 </script>
 
 </body>

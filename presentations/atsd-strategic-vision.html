@@ -324,21 +324,43 @@
 </div>
 
 <!-- html2pdf.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
-  document.getElementById('downloadPdfBtn').addEventListener('click', () => {
-    const element = document.getElementById('deck');
-    const opt = {
-      margin: 0.5,
-      filename: 'ATSD Strategic Vision.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, dpi: 192 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
-    };
+  // Per-slide PDF export: crisp, one slide per page, no extras.
+  async function downloadPDF() {
+    const { jsPDF } = window.jspdf;                 // from html2pdf.bundle
+    const capture = window.html2canvas;             // from html2pdf.bundle
+    const pdf = new jsPDF({ unit: 'in', format: 'letter', orientation: 'landscape' });
+
+    // Hide the on-screen buttons during capture
     const controls = document.querySelector('.print-controls');
+    const prevDisplay = controls.style.display;
     controls.style.display = 'none';
-    html2pdf().set(opt).from(element).save().then(() => (controls.style.display = 'flex'));
-  });
+
+    // Make sure we snapshot the live layout at screen size
+    const slides = Array.from(document.querySelectorAll('.slide-container'));
+
+    for (let i = 0; i < slides.length; i++) {
+      const slide = slides[i];
+
+      // Render the slide to a canvas at high resolution
+      const canvas = await capture(slide, {
+        scale: 2,                // sharper text
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        windowWidth: slide.scrollWidth
+      });
+
+      // Place the image with 0.5in margins (content box = 10 x 7.5 in)
+      const imgData = canvas.toDataURL('image/jpeg', 0.98);
+      if (i > 0) pdf.addPage('letter', 'landscape');
+      pdf.addImage(imgData, 'JPEG', 0.5, 0.5, 10, 7.5);
+    }
+
+    pdf.save('ATSD Strategic Vision.pdf');
+    controls.style.display = prevDisplay || '';
+  }
+
+  document.getElementById('downloadPdfBtn').addEventListener('click', downloadPDF);
 </script>
 
 </body>

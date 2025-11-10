@@ -1,128 +1,139 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Simmons Tech Hub — ATSD Strategic Support</title>
-  <meta name="description" content="Instructional, research, and innovation support — tailored for the Simmons School, and scalable across SMU.">
-  <meta name="theme-color" content="#CC0035">
-  <link rel="stylesheet" href="./assets/style.css">
+  <meta name="description" content="ATSD support for the Simmons School: appointments, services, newsletters, and resources." />
+  <link rel="stylesheet" href="./assets/style.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23CC0035'/%3E%3Ctext x='50%25' y='57%25' text-anchor='middle' font-size='34' font-family='Georgia' fill='white'%3EST%3C/text%3E%3C/svg%3E">
-  <meta property="og:title" content="Simmons Tech Hub — ATSD Strategic Support">
-  <meta property="og:description" content="Practical tech for teaching, research, and operations at SMU Simmons.">
-  <meta property="og:url" content="https://galvanthony-smu.github.io/simmons-tech-hub/">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 
-<header>
-  <div class="wrap nav">
-    <div class="brand">
-      <div class="logo" aria-hidden="true">ST</div>
+  <!-- Brand bar (swap the placeholder for an approved SMU logo when ready) -->
+  <div class="brand-bar" role="banner">
+    <div class="brand-wrap">
+      <a class="brand-logo" href="https://www.smu.edu" target="_blank" rel="noopener">
+        <img src="logo-placeholder.png" alt="SMU logo" />
+        <span class="wordmark">Southern Methodist University</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-content">
       <div>
-        <div>Simmons Tech Hub</div>
-        <small class="muted">Simmons School · Academic Technology</small>
+        <span class="chip">Simmons School · Academic Technology</span>
+        <h1>Simmons Tech Hub</h1>
+        <p class="lede">
+          Instructional, research, and innovation support — tailored for the Simmons School, and scalable across SMU.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://outlook.office.com/bookwithme/user/8ce6c0f717f7446796f5ddc2ab52b6b3%40mail.smu.edu?anonymous&ismsaljsauthenabled=true" target="_blank" rel="noopener" aria-label="Book an appointment">
+            📅 Book an appointment
+          </a>
+          <a class="btn btn-secondary" href="#services">Explore services</a>
+        </div>
+      </div>
+
+      <aside class="panel" aria-label="About Anthony">
+        <h2>About Anthony Galván</h2>
+        <p>
+          Academic Technology Service Director (ATSD) for Simmons. I help faculty and staff plan, pilot, and scale
+          effective uses of technology in teaching, research, and operations — with an eye on data, accessibility, and impact.
+        </p>
+        <ul class="list-clean">
+          <li><span>Strategic planning for tech adoption</span></li>
+          <li><span>AI pedagogy &amp; responsible use</span></li>
+          <li><span>Learning platforms (Canvas, Panopto, Qualtrics, etc.)</span></li>
+          <li><span>Workflows, analytics, and training</span></li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <main class="grid" id="content">
+    <!-- Services -->
+    <section id="services">
+      <div class="two-col">
+        <div class="card">
+          <h3>Consulting &amp; Appointments</h3>
+          <p>One-on-one consultations for course design, research tooling, data workflows, and faculty onboarding.</p>
+          <a href="https://outlook.office.com/bookwithme/user/8ce6c0f717f7446796f5ddc2ab52b6b3%40mail.smu.edu?anonymous&ismsaljsauthenabled=true" target="_blank" rel="noopener">Book time</a>
+        </div>
+        <div class="card">
+          <h3>Teaching &amp; Learning</h3>
+          <p>Canvas, Panopto, Zoom, assessment design, accessibility, and classroom tech integrations.</p>
+          <a href="presentations/">Presentations</a>
+        </div>
+        <div class="card">
+          <h3>AI &amp; Innovation</h3>
+          <p>AI pedagogy playbook, workshops, and “roadshow” talks; pilots that scale when they prove impact.</p>
+          <a href="ai/">AI resources</a>
+        </div>
+        <div class="card">
+          <h3>Research &amp; Data</h3>
+          <p>Qualtrics, survey design, data management for PhD students, and reproducible workflows.</p>
+          <a href="research/">Research support</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletters / Updates -->
+    <section id="newsletters">
+      <div class="panel">
+        <h2>Newsletters &amp; Updates</h2>
+        <ul class="list-clean">
+          <!-- Replace with real posts/files in your repo -->
+          <li><a href="news/2025-11-atsd-update.html">ATSD Update — November 2025</a> <time datetime="2025-11-01">Nov 1, 2025</time></li>
+          <li><a href="news/2025-10-atsd-update.html">ATSD Update — October 2025</a>  <time datetime="2025-10-01">Oct 1, 2025</time></li>
+          <li><a href="news/2025-09-atsd-update.html">ATSD Update — September 2025</a> <time datetime="2025-09-01">Sep 1, 2025</time></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section id="links">
+      <div class="panel">
+        <h2>Quick Links</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Service Catalog</h3>
+            <p>What I support and how to get it.</p>
+            <a href="services/">View services</a>
+          </div>
+          <div class="card card--red">
+            <h3>Book an Appointment</h3>
+            <p>Pick a time that works for you.</p>
+            <a href="https://outlook.office.com/bookwithme/user/8ce6c0f717f7446796f5ddc2ab52b6b3%40mail.smu.edu?anonymous&ismsaljsauthenabled=true" target="_blank" rel="noopener">Open Bookings</a>
+          </div>
+          <div class="card card--teal">
+            <h3>Presentations &amp; Slide Decks</h3>
+            <p>Slides and recordings from roadshows and workshops.</p>
+            <a href="presentations/">Browse decks</a>
+          </div>
+          <div class="card card--salmon">
+            <h3>Contact &amp; Office Hours</h3>
+            <p>How to reach me and where to find me.</p>
+            <a href="contact/">Contact info</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>&copy; <span id="y"></span> Southern Methodist University — Simmons School (Academic Technology)</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="https://www.smu.edu/brand/logos" target="_blank" rel="noopener">Logo guidelines</a>
+        <a href="https://www.smu.edu/brand/color-palette" target="_blank" rel="noopener">Color palette</a>
+        <a href="https://www.smu.edu/brand/fonts" target="_blank" rel="noopener">Fonts</a>
       </div>
     </div>
-    <nav aria-label="Primary">
-      <ul>
-        <li><a href="./presentations/">Presentations</a></li>
-        <li><a class="cta" href="https://outlook.office.com/bookwithme/user/8ce6c0f717f7446796f5ddc2ab52b6b3%40mail.smu.edu?anonymous=&ismsaljsauthenabled=true">Book time</a></li>
-        <li><a href="mailto:amgalvan@mail.smu.edu">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  </footer>
 
-<section class="hero">
-  <div class="wrap">
-    <h1>Instructional, research, and innovation support — tailored for the Simmons School, and scalable across SMU.</h1>
-    <p>One-on-one consultations, workshops, and practical playbooks to turn “we should” into “it’s shipped.”</p>
-    <div class="buttons">
-      <a class="btn primary" href="https://outlook.office.com/bookwithme/user/8ce6c0f717f7446796f5ddc2ab52b6b3%40mail.smu.edu?anonymous=&ismsaljsauthenabled=true">Book an appointment</a>
-      <a class="btn" href="./presentations/">Browse decks</a>
-      <a class="btn" href="mailto:amgalvan@mail.smu.edu">Contact</a>
-    </div>
-  </div>
-</section>
-
-<div class="wrap section">
-  <h2>About Anthony Galván</h2>
-  <p class="muted">Academic Technology Service Director (ATSD) for Simmons. I help faculty and staff plan, pilot, and scale effective uses of technology in teaching, research, and operations — with an eye on data, accessibility, and impact.</p>
-  <ul class="list">
-    <li>Strategic planning for tech adoption</li>
-    <li>AI pedagogy &amp; responsible use</li>
-    <li>Learning platforms (Canvas, Panopto, Qualtrics, etc.)</li>
-    <li>Workflows, analytics, and training</li>
-  </ul>
-</div>
-
-<div class="wrap section">
-  <h2>What I support</h2>
-  <div class="grid">
-    <article class="card">
-      <h3>Consulting & Appointments</h3>
-      <p>Course design, research tooling, data workflows, and faculty onboarding.</p>
-      <p><a class="btn" href="https://outlook.office.com/bookwithme/user/8ce6c0f717f7446796f5ddc2ab52b6b3%40mail.smu.edu?anonymous=&ismsaljsauthenabled=true">Book time</a></p>
-    </article>
-    <article class="card">
-      <h3>Teaching & Learning</h3>
-      <p>Canvas, Panopto, Zoom, assessment design, accessibility, and classroom tech integrations.</p>
-      <p><a class="btn" href="#">Explore services</a></p>
-    </article>
-    <article class="card">
-      <h3>AI & Innovation</h3>
-      <p>AI pedagogy playbook, workshops, and “roadshow” talks; pilots that scale when they prove impact.</p>
-      <p><a class="btn" href="#">AI resources</a></p>
-    </article>
-    <article class="card">
-      <h3>Research & Data</h3>
-      <p>Qualtrics, survey design, data management for PhD students, and reproducible workflows.</p>
-      <p><a class="btn" href="#">Research support</a></p>
-    </article>
-  </div>
-</div>
-
-<div class="wrap section">
-  <h2>Newsletters & Updates</h2>
-  <div class="grid">
-    <article class="card">
-      <h3>ATSD Update — November 2025</h3>
-      <p class="muted">Nov 1, 2025</p>
-      <p><a class="btn" href="#">Read update</a></p>
-    </article>
-    <article class="card">
-      <h3>ATSD Update — October 2025</h3>
-      <p class="muted">Oct 1, 2025</p>
-      <p><a class="btn" href="#">Read update</a></p>
-    </article>
-    <article class="card">
-      <h3>ATSD Update — September 2025</h3>
-      <p class="muted">Sep 1, 2025</p>
-      <p><a class="btn" href="#">Read update</a></p>
-    </article>
-  </div>
-</div>
-
-<div class="wrap section">
-  <h2>Quick links</h2>
-  <ul class="list">
-    <li><a href="#">Service catalog</a></li>
-    <li><a href="https://outlook.office.com/bookwithme/user/8ce6c0f717f7446796f5ddc2ab52b6b3%40mail.smu.edu?anonymous=&ismsaljsauthenabled=true">Book an appointment</a></li>
-    <li><a href="./presentations/">Presentations & slide decks</a></li>
-    <li><a href="mailto:amgalvan@mail.smu.edu">Contact & office hours</a></li>
-  </ul>
-</div>
-
-<footer>
-  <div class="wrap">
-    <div>© <span id="y"></span> Southern Methodist University — Simmons School (Academic Technology)</div>
-    <div class="muted">Colors follow SMU brand palette. Accessibility-first, static site. </div>
-    <div class="muted small"><a href="https://www.smu.edu/brand/color-palette" target="_blank" rel="noopener">Brand palette</a></div>
-  </div>
-</footer>
-
-<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>

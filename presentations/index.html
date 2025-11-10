@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Presentations — Simmons Tech Hub</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">ST</div>
+      <div><div>Simmons Tech Hub</div><small class="muted">Presentations</small></div>
+    </div>
+    <nav><ul><li><a href="../">Home</a></li></ul></nav>
+  </div>
+</header>
+
+<div class="wrap section">
+  <h2>Presentations</h2>
+  <p class="muted">Drop .html or .pdf files into this folder; the list updates automatically.</p>
+  <div id="list" class="grid"></div>
+</div>
+
+<footer><div class="wrap"><div class="muted">© <span id="y"></span> Simmons Tech Hub</div></div></footer>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+  const owner='galvanthony-smu', repo='simmons-tech-hub', path='presentations', api=`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=main`;
+  fetch(api).then(r=>r.json()).then(items=>{
+    const c=document.getElementById('list');
+    if(!Array.isArray(items)) throw new Error('No items');
+    const files=items.filter(i=>i.type==='file'&&/\.(html?|pdf)$/i.test(i.name));
+    if(!files.length) { c.innerHTML='<p class="muted">No presentations yet.</p>'; return; }
+    files.forEach(f=>{
+      const title=f.name.replace(/[-_]/g,' ').replace(/\.(html?|pdf)$/i,'').replace(/\b\w/g,c=>c.toUpperCase());
+      const card=document.createElement('article'); card.className='card';
+      card.innerHTML=`<h3>${title}</h3><p class="muted">${f.name}</p><p><a class="btn" href="./${f.name}">Open</a></p>`;
+      c.appendChild(card);
+    });
+  }).catch(()=>{document.getElementById('list').innerHTML='<p class="muted">Couldn’t load listing right now—refresh later.</p>';});
+</script>
+</body>
+</html>

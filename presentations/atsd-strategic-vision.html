@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
-    :root { --controls-height: 88px; }
+    :root { --controls-height: 60px; }
 
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
@@ -154,69 +154,68 @@
       font-size: 16px;
     }
 
-/* ===== PRINT (robust across Chrome/Edge/PDF) ===== */
-@media print {
-  /* 1) Own the paper: Letter landscape, zero external margins */
-  @page {
-    size: Letter landscape;
-    margin: 0;
-  }
+    /* Controls */
+    .print-controls {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+    .print-controls button {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #354CA1;
+      background: #354CA1;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    .print-controls button:hover { filter: brightness(0.95); }
 
-  /* 2) Neutralize screen layout so Slide 1 doesn't shift/clip */
-  html, body {
-    display: block !important;
-    background: #fff !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-    margin: 0 !important;
-    padding: 0 !important;
-    font-size: 104%; /* tiny reduction to prevent spillover */
-  }
-
-  /* 3) Remove the reserved space used for the fixed buttons on screen */
-  #deck { margin-top: 0 !important; padding: 0 !important; }
-
-  /* 4) Each slide = exactly one page (with internal 0.5in content padding) */
-  .slide-container {
-    /* Full sheet size */
-    width: 11in !important;
-    height: 8.5in !important;
-
-    /* Internal "margins" for content */
-    padding: 0.5in !important;
-
-    /* Visuals */
-    border: 1px solid #E5E7EB !important;
-    box-shadow: none !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-
-    /* Pagination rules */
-    page-break-inside: avoid;
-    break-inside: avoid;
-    page-break-after: always;   /* make each slide its own page */
-    break-after: page;
-  }
-
-  /* 5) Avoid the extra blank page after the last slide */
-  .slide-container:last-of-type {
-    page-break-after: avoid !important;
-    break-after: avoid !important;
-  }
-
-  /* 6) Slight compaction to keep page 1 from spilling */
-  .content-area { gap: 28px !important; height: auto !important; }
-  .icon-box { padding: 18px !important; margin-bottom: 14px !important; }
-  .slide-container h1 {
-    font-size: 44px !important;
-    margin-bottom: 18px !important;
-    padding-bottom: 10px !important;
-  }
-  .slide-container p, .slide-container li { font-size: 18px !important; }
-
-  /* 7) Hide on-screen controls when printing */
-  .print-controls { display: none !important; }
-}
+    /* PRINT FIXES */
+    @media print {
+      @page { size: Letter landscape; margin: 0; }
+      html, body {
+        display: block !important;
+        background: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        margin: 0 !important;
+        padding: 0 !important;
+        font-size: 104%;
+      }
+      #deck { margin-top: 0 !important; padding: 0 !important; }
+      .slide-container {
+        width: 11in !important;
+        height: 8.5in !important;
+        padding: 0.5in !important;
+        border: 1px solid #E5E7EB !important;
+        box-shadow: none !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        page-break-after: always;
+        break-after: page;
+      }
+      .slide-container:last-of-type {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      .content-area { gap: 28px !important; height: auto !important; }
+      .icon-box { padding: 18px !important; margin-bottom: 14px !important; }
+      .slide-container h1 {
+        font-size: 44px !important;
+        margin-bottom: 18px !important;
+        padding-bottom: 10px !important;
+      }
+      .slide-container p, .slide-container li { font-size: 18px !important; }
+      .print-controls { display: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -261,16 +260,16 @@
     <div class="content-area">
       <div class="icon-box">
         <h3><i class="fa-solid fa-list-check"></i>The ATSD Service &amp; Skills Index</h3>
-        <p>The "hard and soft service index" we need for the re-org. A data-driven project to map all ATSD work.</p>
+        <p>A data-driven project to map all ATSD work across "Champion" and "Specialist" roles — the foundation for future alignment and coverage models.</p>
         <ul>
           <li><span class="emph">Goal:</span> Identify "Champion" (project) vs. "Specialist" (service) tasks to prepare for the "matching game."</li>
         </ul>
       </div>
       <div class="icon-box">
-        <h3><i class="fa-solid fa-chalkboard-user"></i>The "AI Pedagogy Playbook" &amp; Roadshow</h3>
-        <p>Scale our AI thought leadership by developing a unified, high-quality presentation for all ATSDs to deliver.</p>
+        <h3><i class="fa-solid fa-brain"></i>AI Learning Fair &amp; Showcase</h3>
+        <p>A campus-wide event combining workshops, demonstrations, and peer presentations on applied AI in teaching and research.</p>
         <ul>
-          <li><span class="emph">Goal:</span> Create a tangible "3-Year Sprint" win, establishing OIT as the clear campus leader in applied AI.</li>
+          <li><span class="emph">Goal:</span> Build engagement around innovation by drawing faculty, vendors, and ATSDs together — not by invitation, but through participation.</li>
         </ul>
       </div>
       <div class="icon-box full-span">
@@ -308,7 +307,7 @@
           <ul class="tight">
             <li><span class="emph">Champions:</span> A, B, C (the “Front Door” for their schools)</li>
             <li><span class="emph">Specialist Hub:</span> (Canvas, Zoom, Panopto, Qualtrics)</li>
-            <li><span class="emph">Champion Projects:</span> (AI Roadshow, Simulation Engine, Data Lake)</li>
+            <li><span class="emph">Champion Projects:</span> (AI Fair, Simulation Engine, Data Lake)</li>
           </ul>
 
           <ul class="tight" style="margin-top:12px;">
@@ -316,12 +315,16 @@
             <li>Preserves what Deans value most: a trusted “Front Door.”</li>
             <li>Creates a “Specialist Hub” to scale great ideas across schools.</li>
           </ul>
+
+          <p style="margin-top:18px; font-size:18px; color:#475569;">
+            <i class="fa-solid fa-dumbbell"></i>
+            <span class="emph">Looking ahead:</span> a potential ATSD role for Athletics — a unique “Champion” placement serving high-visibility programs with specialized communication, culture, and leadership engagement needs.
+          </p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
 </body>
 </html>

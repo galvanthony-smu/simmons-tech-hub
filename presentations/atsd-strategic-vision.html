@@ -33,7 +33,7 @@
       align-items: flex-start;
       background-color: #fff;
       border-radius: 8px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
       height: auto;
@@ -67,11 +67,7 @@
       margin-bottom: 30px;
     }
 
-    p, li {
-      font-size: 20px;
-      color: #262626;
-      margin-bottom: 15px;
-    }
+    p, li { font-size: 20px; color: #262626; margin-bottom: 15px; }
 
     ul { list-style: none; padding-left: 0; }
     li { position: relative; padding-left: 35px; }
@@ -81,9 +77,7 @@
       font-weight: 900;
       color: #CC0035;
       position: absolute;
-      left: 0;
-      top: 4px;
-      font-size: 18px;
+      left: 0; top: 4px; font-size: 18px;
     }
 
     .content-area { display: flex; gap: 40px; width: 100%; }
@@ -102,12 +96,14 @@
 
     .emph { font-weight: 700; color: #CC0035; text-decoration: underline; text-underline-offset: 2px; }
 
+    /* Slide 2 layout */
     #slide2 .content-area { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
     #slide2 .icon-box.full-span { grid-column: 1 / -1; }
 
+    /* Slide 3 balance and text flow */
     #slide3 .diagram-container {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
       gap: 28px;
       align-items: start;
     }
@@ -125,88 +121,65 @@
     #slide3 .diagram-box.future h3 { color: #59C3C3; }
 
     #slide3 .diagram-box ul.tight {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      max-width: 48ch;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0; padding: 0; list-style: none;
+      max-width: 48ch; margin-left: auto; margin-right: auto;
     }
     #slide3 .diagram-box ul.tight li {
-      position: relative;
-      padding-left: 28px;
-      margin-bottom: 8px;
-      line-height: 1.45;
-      font-size: 18px;
+      position: relative; padding-left: 28px; margin-bottom: 8px;
+      line-height: 1.45; font-size: 18px;
     }
     #slide3 .diagram-box ul.tight li::before {
       content: '\f101';
       font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      color: #CC0035;
-      position: absolute;
-      left: 0;
-      top: 2px;
-      font-size: 16px;
+      font-weight: 900; color: #CC0035;
+      position: absolute; left: 0; top: 2px; font-size: 16px;
     }
 
+    /* Athletics callout style */
+    .callout {
+      background: #F3F4F6;
+      border-left: 5px solid #CC0035;
+      border-radius: 8px;
+      padding: 14px 18px;
+      color: #475569;
+      font-size: 18px;
+      margin-top: 12px;
+    }
+
+    /* Controls */
     .print-controls {
       position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-items: flex-end;
+      top: 16px; right: 16px; z-index: 9999;
+      display: flex; flex-direction: column; gap: 8px; align-items: flex-end;
     }
     .print-controls button {
-      padding: 8px 12px;
-      border-radius: 10px;
-      border: 1px solid #354CA1;
-      background: #354CA1;
-      color: #fff;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      padding: 8px 12px; border-radius: 10px;
+      border: 1px solid #354CA1; background: #354CA1; color: #fff;
+      cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
     .print-controls button:hover { filter: brightness(0.95); }
 
+    /* PRINT FIXES */
     @media print {
       @page { size: Letter landscape; margin: 0; }
       html, body {
-        display: block !important;
-        background: #fff !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        margin: 0 !important;
-        padding: 0 !important;
-        font-size: 104%;
+        display: block !important; background: #fff !important;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        margin: 0 !important; padding: 0 !important; font-size: 104%;
       }
       #deck { margin-top: 0 !important; padding: 0 !important; }
       .slide-container {
-        width: 11in !important;
-        height: 8.5in !important;
+        width: 11in !important; height: 8.5in !important;
         padding: 0.5in !important;
-        border: 1px solid #E5E7EB !important;
-        box-shadow: none !important;
-        box-sizing: border-box !important;
-        overflow: hidden !important;
-        page-break-inside: avoid;
-        break-inside: avoid;
-        page-break-after: always;
-        break-after: page;
+        border: 1px solid #E5E7EB !important; box-shadow: none !important;
+        box-sizing: border-box !important; overflow: hidden !important;
+        page-break-inside: avoid; break-inside: avoid;
+        page-break-after: always; break-after: page;
       }
-      .slide-container:last-of-type {
-        page-break-after: avoid !important;
-        break-after: avoid !important;
-      }
+      .slide-container:last-of-type { page-break-after: avoid !important; break-after: avoid !important; }
       .content-area { gap: 28px !important; height: auto !important; }
       .icon-box { padding: 18px !important; margin-bottom: 14px !important; }
-      .slide-container h1 {
-        font-size: 44px !important;
-        margin-bottom: 18px !important;
-        padding-bottom: 10px !important;
-      }
+      .slide-container h1 { font-size: 44px !important; margin-bottom: 18px !important; padding-bottom: 10px !important; }
       .slide-container p, .slide-container li { font-size: 18px !important; }
       .print-controls { display: none !important; }
     }
@@ -298,11 +271,12 @@
     </div>
   </div>
 
-  <!-- SLIDE 3 -->
+  <!-- SLIDE 3: Champions + Specialists (with Athletics callout) -->
   <div class="slide-container" id="slide3" data-slide-number="3">
     <h1>ATS Structure: Champions + Specialists</h1>
     <div class="content-area">
       <div class="diagram-container">
+        <!-- Champions -->
         <div class="diagram-box future">
           <h3>Champions (Front Door to OIT)</h3>
           <ul class="tight">
@@ -312,6 +286,7 @@
           </ul>
         </div>
 
+        <!-- Specialists -->
         <div class="diagram-box current">
           <h3>Specialist Hub &amp; Index</h3>
           <ul class="tight">
@@ -321,6 +296,7 @@
           </ul>
         </div>
 
+        <!-- Principles -->
         <div class="diagram-box" style="grid-column: 1 / -1;">
           <h3>Model Principles</h3>
           <ul class="tight">
@@ -331,6 +307,14 @@
           <p style="margin-top:12px; font-size:18px; color:#475569; text-align:center;">
             Federated by design: we champion inside our schools and scale outside — remaining the first call when the “desk is on fire.”
           </p>
+
+          <!-- Athletics callout -->
+          <div class="callout">
+            <i class="fa-solid fa-dumbbell"></i>
+            <strong> Looking ahead: ATSD for Athletics.</strong>
+            A distinct Champion placement serving high-visibility programs and stakeholders (AD, flagship coaches).
+            Different cadence and culture — same model: trusted Front Door, shared Specialist Hub, scalable innovation.
+          </div>
         </div>
       </div>
     </div>

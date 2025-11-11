@@ -44,14 +44,16 @@
       overflow: hidden;
     }
 
-    .slide-container::after {
-      content: "A. Galvan | ATSD Strategic Vision | " attr(data-slide-number);
-      position: absolute;
-      bottom: 30px;
-      left: 60px;
-      font-size: 14px;
-      color: #6b7280;
-    }
+/* Move slide label to top right instead of bottom left */
+.slide-container::after {
+  content: "A. Galvan | ATSD Strategic Vision | " attr(data-slide-number);
+  position: absolute;
+  top: 20px;          /* moved from bottom */
+  right: 60px;        /* moved from left */
+  font-size: 14px;
+  color: #6b7280;
+  text-align: right;
+}
 
     h1, h2, h3 {
       font-family: 'Roboto Condensed', Georgia, serif;

@@ -161,30 +161,89 @@
     }
     .print-controls button:hover { filter: brightness(0.95); }
 
-    /* PRINT FIXES */
-    @media print {
-      @page { size: Letter landscape; margin: 0; }
-      html, body {
-        display: block !important; background: #fff !important;
-        -webkit-print-color-adjust: exact; print-color-adjust: exact;
-        margin: 0 !important; padding: 0 !important; font-size: 104%;
-      }
-      #deck { margin-top: 0 !important; padding: 0 !important; }
-      .slide-container {
-        width: 11in !important; height: 8.5in !important;
-        padding: 0.5in !important;
-        border: 1px solid #E5E7EB !important; box-shadow: none !important;
-        box-sizing: border-box !important; overflow: hidden !important;
-        page-break-inside: avoid; break-inside: avoid;
-        page-break-after: always; break-after: page;
-      }
-      .slide-container:last-of-type { page-break-after: avoid !important; break-after: avoid !important; }
-      .content-area { gap: 28px !important; height: auto !important; }
-      .icon-box { padding: 18px !important; margin-bottom: 14px !important; }
-      .slide-container h1 { font-size: 44px !important; margin-bottom: 18px !important; padding-bottom: 10px !important; }
-      .slide-container p, .slide-container li { font-size: 18px !important; }
-      .print-controls { display: none !important; }
-    }
+/* ===== PRINT: fit-to-page, crisp text (Letter landscape) ===== */
+@media print {
+  /* Full-bleed control: we draw our own margins via padding */
+  @page { size: Letter landscape; margin: 0; }
+
+  /* Global print tuning */
+  html, body {
+    display: block !important;
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    margin: 0 !important;
+    padding: 0 !important;
+    /* Slight downscale to help fit without compression artifacts */
+    font-size: 100%; /* base stays, we control elements below */
+  }
+
+  /* Move the slide label to top-right (per your preference) */
+  .slide-container::after {
+    content: "A. Galvan | ATSD Strategic Vision | " attr(data-slide-number);
+    position: absolute;
+    top: 18px;
+    right: 0.5in;           /* aligns with content edge */
+    font-size: 12px;        /* down a notch for fit */
+    color: #6b7280;
+    text-align: right;
+  }
+
+  /* Each slide = exactly one page */
+  .slide-container {
+    width: 11in !important;
+    height: 8.5in !important;
+    /* Internal padding = our “margins” */
+    padding: 0.45in 0.5in 0.45in 0.5in !important; /* slightly tighter top/bottom */
+    border: 1px solid #E5E7EB !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+
+    page-break-inside: avoid;
+    break-inside: avoid;
+    page-break-after: always;
+    break-after: page;
+  }
+  .slide-container:last-of-type {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* Typography downshifts (subtle) */
+  .slide-container h1 {
+    font-size: 40px !important;      /* was ~44–48 */
+    margin-bottom: 14px !important;
+    padding-bottom: 8px !important;
+    border-bottom-width: 2px !important;
+  }
+  .slide-container h2 { font-size: 28px !important; }
+  .slide-container h3 { font-size: 20px !important; }
+
+  .slide-container p,
+  .slide-container li {
+    font-size: 17px !important;      /* was 18–20 */
+    line-height: 1.45 !important;    /* a hair tighter */
+    margin-bottom: 10px !important;
+  }
+
+  /* Layout tightening */
+  .content-area { gap: 22px !important; height: auto !important; }
+  .icon-box { padding: 14px !important; margin-bottom: 12px !important; border-left-width: 4px !important; }
+
+  /* Tight-list variant on Slide 3 */
+  #slide3 .diagram-box ul.tight {
+    max-width: 46ch !important;
+  }
+  #slide3 .diagram-box ul.tight li {
+    padding-left: 24px !important;
+    margin-bottom: 6px !important;
+    font-size: 16.5px !important;
+  }
+
+  /* Labels/buttons hidden in print */
+  .print-controls { display: none !important; }
+}
   </style>
 </head>
 <body>

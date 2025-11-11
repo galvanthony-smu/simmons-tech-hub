@@ -103,51 +103,86 @@
     #slide2 .content-area { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
     #slide2 .icon-box.full-span { grid-column: 1 / -1; }
 
-    #slide3 .diagram-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      align-items: start;
-    }
+/* Slide 3: better use of space on the bottom panel */
+#slide3 .principles-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr; /* more room for principles, compact card for Athletics */
+  gap: 20px;
+  align-items: start;
+}
 
-    #slide3 .diagram-box {
-      background-color: #F8FAFC;
-      border: 2px solid #E5E7EB;
-      border-radius: 8px;
-      padding: 25px;
-      display: flex;
-      flex-direction: column;
-    }
+#slide3 .principles-grid h4 {
+  margin: 0 0 10px 0;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+  color: #354CA1;
+  font-size: 20px;
+}
 
-    #slide3 .diagram-box h3 { text-align: center; border-bottom: 2px solid #E5E7EB; padding-bottom: 10px; }
-    #slide3 .diagram-box.future h3 { color: #354CA1; }
-    #slide3 .diagram-box.current h3 { color: #CC0035; }
+#slide3 .principles-grid .left ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    #slide3 .diagram-box ul.tight {
-      list-style: none;
-      padding: 0;
-      max-width: 48ch;
-      margin: 0 auto;
-    }
+#slide3 .principles-grid .left li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 8px;
+  font-size: 18px;
+  line-height: 1.45;
+}
 
-    #slide3 .diagram-box ul.tight li {
-      position: relative;
-      padding-left: 28px;
-      margin-bottom: 8px;
-      font-size: 18px;
-      line-height: 1.45;
-    }
+#slide3 .principles-grid .left li::before {
+  content: '\f101'; /* FA arrow-right */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: #CC0035;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-size: 15px;
+}
 
-    #slide3 .diagram-box ul.tight li::before {
-      content: '\f101';
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      color: #CC0035;
-      position: absolute;
-      left: 0;
-      top: 2px;
-      font-size: 16px;
-    }
+/* Athletics Spotlight card */
+#slide3 .principles-grid .athletics {
+  background: #F3F4F6;
+  border-left: 5px solid #CC0035;
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: #475569;
+  font-size: 18px;
+}
+#slide3 .principles-grid .athletics p {
+  margin: 0 0 8px 0;
+  font-size: 17px;
+  line-height: 1.45;
+}
+#slide3 .principles-grid .athletics ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+#slide3 .principles-grid .athletics li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 6px;
+  font-size: 16.5px;
+  line-height: 1.4;
+}
+#slide3 .principles-grid .athletics li::before {
+  content: '\f00c'; /* FA check */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: #354CA1;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-size: 14px;
+}
+
+/* Remove the centered look from the old bottom box */
+#slide3 .diagram-box.bottom { text-align: left; }
 
     .print-controls {
       position: fixed;
@@ -298,44 +333,62 @@
     </div>
   </div>
 
-  <!-- SLIDE 3 -->
-  <div class="slide-container" id="slide3" data-slide-number="3">
-    <h1>ATS Structure: Champions + Specialists</h1>
-    <div class="content-area">
-      <div class="diagram-container">
-        <div class="diagram-box future">
-          <h3>Champions (Front Door to OIT)</h3>
-          <ul class="tight">
-            <li>Serve as the strategic partner and single point of contact for Deans.</li>
-            <li>Champion school-specific initiatives that can scale across SMU.</li>
-            <li>Lead All-ATSD projects that strengthen ATS’s campus presence.</li>
-            <li><span class="emph">Potential Expansion:</span> an ATSD for Athletics — a unique Champion placement interfacing with high-visibility programs and senior leadership.</li>
-          </ul>
+<!-- SLIDE 3 -->
+<div class="slide-container" id="slide3" data-slide-number="3">
+  <h1>ATS Structure: Champions + Specialists</h1>
+  <div class="content-area">
+    <div class="diagram-container">
+      <!-- Champions -->
+      <div class="diagram-box future">
+        <h3>Champions (Front Door to OIT)</h3>
+        <ul class="tight">
+          <li>Serve as the strategic partner and single point of contact for Deans.</li>
+          <li>Champion school-specific initiatives that can scale across SMU.</li>
+          <li>Lead All-ATSD projects that strengthen ATS’s campus presence.</li>
+        </ul>
+      </div>
+
+      <!-- Specialists -->
+      <div class="diagram-box current">
+        <h3>Specialist Hub &amp; Index</h3>
+        <ul class="tight">
+          <li><span class="emph">Skills &amp; Services Index</span> connects all of ATS (ATSDs + RTS + Instructional Systems + OPS).</li>
+          <li>Consult-first culture: no one must be SME on everything; we route to strengths.</li>
+          <li>Shared platform expertise for consistency and speed (Canvas, Zoom, Panopto, Qualtrics, …).</li>
+        </ul>
+      </div>
+
+      <!-- Bottom: Principles + Athletics Spotlight (side-by-side) -->
+      <div class="diagram-box bottom" style="grid-column:1 / -1;">
+        <div class="principles-grid">
+          <div class="left">
+            <h4>Model Principles</h4>
+            <ul>
+              <li><span class="emph">Engine of Innovation:</span> incubate locally in schools, then scale thoughtfully across SMU.</li>
+              <li><span class="emph">Front Door, Always:</span> Deans know one name; we handle the rest through the hub.</li>
+              <li><span class="emph">Time to Lead:</span> the Index offloads reactive work so Champions can drive initiatives.</li>
+              <li><span class="emph">Consult as a Norm:</span> second/third opinions are expected; we lean on shared expertise.</li>
+            </ul>
+          </div>
+
+          <div class="athletics">
+            <h4><i class="fa-solid fa-dumbbell" style="margin-right:8px;"></i>Athletics Spotlight (Looking Ahead)</h4>
+            <p>A distinct Champion placement serving high-visibility programs and senior leadership (AD, flagship coaches).</p>
+            <ul>
+              <li>Different cadence and culture; higher public visibility.</li>
+              <li>Same model: trusted Front Door + shared Specialist Hub.</li>
+              <li>Demonstrates how the federated structure adapts to context.</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="diagram-box current">
-          <h3>Specialist Hub &amp; Index</h3>
-          <ul class="tight">
-            <li><span class="emph">Skills &amp; Services Index</span> connects all of ATS (ATSDs + RTS + Instructional Systems + OPS).</li>
-            <li>Promotes a consult-first culture — no one needs to be the SME on everything.</li>
-            <li>Ensures consistency and speed through shared platform expertise.</li>
-          </ul>
-        </div>
-
-        <div class="diagram-box" style="grid-column:1 / -1;">
-          <h3>Model Principles</h3>
-          <ul class="tight">
-            <li><span class="emph">Engine of Innovation:</span> incubate locally in schools, then scale across SMU.</li>
-            <li><span class="emph">Front Door, Always:</span> Deans know one name; we handle the rest through the hub.</li>
-            <li><span class="emph">Time to Lead:</span> the Index offloads reactive work so Champions can drive initiatives.</li>
-          </ul>
-          <p style="margin-top:12px; font-size:18px; color:#475569; text-align:center;">
-            Federated by design — we champion inside our schools and scale outside, sustaining innovation through shared capability and local insight.
-          </p>
-        </div>
+        <p style="margin-top:10px; font-size:18px; color:#475569;">
+          Federated by design — we champion inside our schools and scale outside, sustaining innovation through shared capability and local insight.
+        </p>
       </div>
     </div>
   </div>
+</div>
 
 </div>
 </body>

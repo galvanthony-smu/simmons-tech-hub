@@ -254,6 +254,17 @@
 
       .print-controls { display: none !important; }
     }
+    /* --- Micro-adjustments for Slide 3 print fit --- */
+@media print {
+  .slide-container {
+    height: 8.28in !important;  /* tiny reduction for safety */
+    padding: 0.45in 0.55in 0.42in 0.55in !important; /* trims bottom just enough */
+  }
+
+  #slide3 .diagram-box.bottom {
+    margin-bottom: 0 !important;
+  }
+}
     /* Fix for the final “Federated by design” note on Slide 3 */
 .federation-note {
   font-size: 17px;

@@ -1,14 +1,13 @@
-/* Simmons Tech Hub — light-only, brand-first CSS
-   Mirrors your current inline styles exactly. */
+/* Simmons Tech Hub — brand-first CSS */
 
 /* ===== Brand tokens ===== */
 :root{
-  --smu-blue:#354CA1;     /* Primary Blue */
-  --smu-red:#CC0035;      /* Primary Red */
-  --smu-yellow:#F9C80E;   /* Secondary */
-  --smu-teal:#59C3C3;     /* Secondary */
-  --smu-salmon:#FF1053;   /* Secondary */
-  --smu-black:#262626;    /* Neutral text */
+  --smu-blue:#354CA1;
+  --smu-red:#CC0035;
+  --smu-yellow:#F9C80E;
+  --smu-teal:#59C3C3;
+  --smu-salmon:#FF1053;
+  --smu-black:#262626;
 
   --ink:#262626;
   --ink-muted:#4B5563;
@@ -26,11 +25,8 @@
 /* ===== Base ===== */
 *{ box-sizing:border-box }
 html,body{ margin:0; padding:0; background:var(--canvas); color:var(--ink) }
-body{
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; /* Trade Gothic preferred; Arial = approved fallback */
-  line-height:1.6;
-}
-h1,h2,h3{ font-family: Georgia, "Times New Roman", serif } /* Tiempos preferred; Georgia fallback */
+body{ font-family: Arial,"Helvetica Neue",Helvetica,sans-serif; line-height:1.6 }
+h1,h2,h3{ font-family: Georgia,"Times New Roman",serif }
 a{ color:var(--smu-blue); text-decoration:none }
 a:hover{ text-decoration:underline }
 a:focus-visible{ outline:3px solid rgba(53,76,161,.35); outline-offset:2px; border-radius:6px }
@@ -38,26 +34,21 @@ a:focus-visible{ outline:3px solid rgba(53,76,161,.35); outline-offset:2px; bord
 
 /* ===== Brand bar ===== */
 .brand-bar{ background:var(--smu-blue); color:#fff }
-.brand-wrap{
-  max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:16px;
-  padding:12px 20px;
-}
-.brand-logo{ display:flex; align-items:center; gap:12px; text-decoration:none; color:#fff }
+.brand-wrap{ max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:16px; padding:12px 20px }
+.brand-logo{ display:flex; align-items:center; gap:12px; color:#fff }
 .brand-logo img{ height:36px; width:auto; display:block }
 .brand-logo .wordmark{ font-weight:700; letter-spacing:.2px; font-size:18px }
 
 /* ===== Hero ===== */
 header.hero{
-  background:linear-gradient(135deg, #fff 0%, #fff 55%, rgba(53,76,161,.06) 100%);
+  background:linear-gradient(135deg,#fff 0%,#fff 55%,rgba(53,76,161,.06) 100%);
   border-bottom:1px solid rgba(0,0,0,.05);
 }
 .hero-content{
   max-width:1100px; margin:0 auto; padding:48px 20px 28px;
   display:grid; grid-template-columns:1.3fr .7fr; gap:28px;
 }
-.hero h1{
-  font-size:40px; line-height:1.15; margin:0 0 12px; color:var(--smu-blue);
-}
+.hero h1{ font-size:40px; line-height:1.15; margin:0 0 12px; color:var(--smu-blue) }
 .hero p.lede{ margin:0 0 20px; color:var(--ink-muted); font-size:18px }
 .chip{
   display:inline-block; background:rgba(204,0,53,.09); color:var(--smu-red);
@@ -74,17 +65,18 @@ header.hero{
 .btn-primary{ background:var(--smu-red); color:#fff }
 .btn-secondary{ background:#fff; color:var(--smu-blue); border:2px solid var(--smu-blue) }
 
-/* ===== Panels / Cards / Layout ===== */
-.panel{
-  background:var(--paper); border-radius:var(--radius-xl); box-shadow:var(--shadow-md);
-  padding:22px;
+/* NEW: focus tags under the CTAs */
+.tags{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px }
+.tag{
+  display:inline-block; background:rgba(53,76,161,.08);
+  border:1px solid rgba(53,76,161,.25);
+  color:var(--smu-blue); font-weight:700; padding:8px 12px; border-radius:999px; font-size:14px;
 }
-.panel h2{ margin:0 0 8px; color:var(--smu-blue) }
 
-.grid{
-  max-width:1100px; margin:24px auto; display:grid; gap:20px; padding:0 20px;
-  grid-template-columns:repeat(12,1fr);
-}
+/* ===== Panels / Cards / Layout ===== */
+.panel{ background:var(--paper); border-radius:var(--radius-xl); box-shadow:var(--shadow-md); padding:22px }
+.panel h2{ margin:0 0 8px; color:var(--smu-blue) }
+.grid{ max-width:1100px; margin:24px auto; display:grid; gap:20px; padding:0 20px; grid-template-columns:repeat(12,1fr) }
 section{ grid-column:1 / -1 }
 .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:20px }
 .cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px }
@@ -116,11 +108,11 @@ footer{ border-top:1px solid rgba(0,0,0,.08); margin-top:24px; background:#fff }
   display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;
 }
 
-/* ===== About headshot ===== */
+/* ===== About headshot (larger) ===== */
 .headshot{
-  width:96px; height:96px; border-radius:50%; object-fit:cover;
+  width:128px; height:128px; border-radius:50%; object-fit:cover;
   box-shadow:var(--shadow-sm); border:3px solid #fff;
-  float:left; margin:2px 12px 8px 0;
+  float:left; margin:2px 14px 10px 0;
 }
 
 /* ===== Responsive ===== */

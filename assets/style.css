@@ -152,3 +152,7 @@ footer{ border-top:1px solid rgba(0,0,0,.08); margin-top:24px; background:#fff }
 @media (prefers-reduced-motion: reduce){
   *{ animation: none !important; transition: none !important }
 }
+
+/* Brand + footer logos */
+.brand-logo .logo { height:36px; width:auto; display:block }
+.footer-logo { height:30px; width:auto; display:block }

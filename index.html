@@ -9,6 +9,8 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#content">Skip to main content</a>
+
   <!-- Brand bar -->
   <div class="brand-bar" role="banner">
     <div class="brand-wrap">
@@ -34,7 +36,6 @@
           <a class="btn btn-secondary" href="#services">Explore services</a>
         </div>
 
-        <!-- Focus-area tags under CTAs -->
         <div class="tags" aria-label="Focus areas">
           <span class="tag">Strategic planning for tech adoption</span>
           <span class="tag">AI pedagogy &amp; responsible use</span>
@@ -45,10 +46,7 @@
 
       <div class="panel" aria-label="About Anthony">
         <h2 style="margin:0 0 8px;color:#354CA1;font-family:Georgia,serif;">About Anthony Galván</h2>
-
-        <!-- Headshot -->
         <img class="headshot" src="./assets/img/anthony.jpeg" alt="Photo of Anthony Galván" width="128" height="128" />
-
         <p style="margin:0 0 10px;">
           Data and technology leader working at the intersection of academic research, data science, and public policy.
           As the Academic Technology Service Director for the Simmons School at SMU, I help faculty and staff plan, pilot,
@@ -66,6 +64,46 @@
   </header>
 
   <main class="grid" id="content">
+
+    <!-- NEW: Popular tasks (mobile-first shortcuts for faculty/staff) -->
+    <section id="popular-tasks" aria-labelledby="popular-heading">
+      <div class="panel">
+        <h2 id="popular-heading">Popular tasks for faculty &amp; staff</h2>
+        <div class="actions">
+          <a class="action" href="https://smu-prod.planoncloud.com/case/BP/SMU_SF_09?14&IsRunInPortal=true&RenderMode=gadget&ColSpan=true&RowSpan=true#" target="_blank" rel="noopener">
+            <span class="emoji">🧾</span> <span>Canvas Incomplete Request</span>
+          </a>
+          <a class="action" href="https://www.smu.edu/oit/academictech/additional-support/ops" target="_blank" rel="noopener">
+            <span class="emoji">🎬</span> <span>OPS: Online course design</span>
+          </a>
+          <a class="action" href="https://smu.az1.qualtrics.com/jfe/form/SV_6yfTWEBvPG1y68K" target="_blank" rel="noopener">
+            <span class="emoji">📝</span> <span>Start OPS intake survey</span>
+          </a>
+          <a class="action" href="https://blog.smu.edu/itconnect/category/lms/canvas-corner/" target="_blank" rel="noopener">
+            <span class="emoji">📚</span> <span>Canvas Corner tips</span>
+          </a>
+          <a class="action" href="https://blog.smu.edu/itconnect/category/academic-technology/" target="_blank" rel="noopener">
+            <span class="emoji">🧠</span> <span>Academic Tech updates</span>
+          </a>
+          <a class="action" href="https://www.smu.edu/oit/services/canvas" target="_blank" rel="noopener">
+            <span class="emoji">🖥️</span> <span>Canvas service page</span>
+          </a>
+          <a class="action" href="https://www.smu.edu/oit/services/qualtrics" target="_blank" rel="noopener">
+            <span class="emoji">📊</span> <span>Qualtrics (research/surveys)</span>
+          </a>
+          <a class="action" href="https://www.smu.edu/oit/services/poll-everywhere" target="_blank" rel="noopener">
+            <span class="emoji">📢</span> <span>Poll Everywhere</span>
+          </a>
+          <a class="action" href="https://www.smu.edu/oit/services/qwickly" target="_blank" rel="noopener">
+            <span class="emoji">✅</span> <span>Qwickly attendance</span>
+          </a>
+          <a class="action" href="https://www.smu.edu/oit/services/box" target="_blank" rel="noopener">
+            <span class="emoji">📦</span> <span>Box cloud storage</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- Services -->
     <section id="services">
       <div class="two-col">
@@ -74,27 +112,21 @@
           <p>One-on-one consultations for course design, research tooling, data workflows, and faculty onboarding.</p>
           <a href="https://outlook.office.com/bookwithme/user/8ce6c0f717f7446796f5ddc2ab52b6b3%40mail.smu.edu?anonymous&ismsaljsauthenabled=true" target="_blank" rel="noopener">Book time</a>
         </div>
-
         <div class="card">
           <h3>Teaching &amp; Learning</h3>
           <p>Canvas, Panopto, Zoom, assessment design, accessibility, and classroom tech integrations.</p>
-
-          <!-- NEW: Canvas Incomplete Request button -->
           <p>
-            <a class="btn btn-secondary" href="https://smu-prod.planoncloud.com/case/BP/SMU_SF_09?14&IsRunInPortal=true&RenderMode=gadget&ColSpan=true&RowSpan=true#" target="_blank" rel="noopener" aria-label="Open Canvas Incomplete Request form">
+            <a class="btn btn-secondary" href="https://smu-prod.planoncloud.com/case/BP/SMU_SF_09?14&IsRunInPortal=true&RenderMode=gadget&ColSpan=true&RowSpan=true#" target="_blank" rel="noopener">
               Canvas Incomplete Request
             </a>
           </p>
-
           <a href="presentations/">Presentations</a>
         </div>
-
         <div class="card">
           <h3>AI &amp; Innovation</h3>
           <p>AI pedagogy playbook, workshops, and “roadshow” talks; pilots that scale when they prove impact.</p>
           <a href="ai/">AI resources</a>
         </div>
-
         <div class="card">
           <h3>Research &amp; Data</h3>
           <p>Qualtrics, survey design, data management for PhD students, and reproducible workflows.</p>
@@ -106,8 +138,8 @@
     <!-- OPS -->
     <section id="ops">
       <div class="panel">
-        <h2 style="margin:0 0 10px;color:#354CA1;font-family:Georgia,serif;">Developing an online course? Partner with OPS</h2>
-        <p class="muted" style="margin:0 0 14px;">
+        <h2>Developing an online course? Partner with OPS</h2>
+        <p class="muted">
           The <strong>Online Production Services (OPS)</strong> team helps faculty design, produce, and launch high-quality online courses.
           They bring project management, instructional design, media production, accessibility, and Canvas build-out—you bring the subject matter expertise.
         </p>
@@ -137,10 +169,10 @@
       </div>
     </section>
 
-    <!-- Newsletters / Updates -->
+    <!-- Newsletters -->
     <section id="newsletters">
       <div class="panel">
-        <h2 style="margin:0 0 10px;color:#354CA1;font-family:Georgia,serif;">Newsletters &amp; Updates</h2>
+        <h2>Newsletters &amp; Updates</h2>
         <ul class="list-clean">
           <li><a href="news/2025-11-atsd-update.html">ATSD Update — November 2025</a> <time datetime="2025-11-01">Nov 1, 2025</time></li>
           <li><a href="news/2025-10-atsd-update.html">ATSD Update — October 2025</a>  <time datetime="2025-10-01">Oct 1, 2025</time></li>
@@ -152,7 +184,7 @@
     <!-- Key Services -->
     <section id="services-links">
       <div class="panel">
-        <h2 style="margin:0 0 10px;color:#354CA1;font-family:Georgia,serif;">Key Services</h2>
+        <h2>Key Services</h2>
         <div class="cards">
           <div class="card"><h3>Canvas</h3><p class="muted">Learning management</p><a href="https://www.smu.edu/oit/services/canvas" target="_blank" rel="noopener">Open service page</a></div>
           <div class="card"><h3>Box</h3><p class="muted">Cloud file storage</p><a href="https://www.smu.edu/oit/services/box" target="_blank" rel="noopener">Open service page</a></div>
